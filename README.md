@@ -1,2 +1,2 @@
 # gamersbase.github.io
-A place to explore new games.
+A place to explore games.
