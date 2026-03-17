@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Game Archive - 게임 가이드</title>
+    <style>
+      /* 기본 설정 및 컬러 테마 */
+      :root {
+        --primary: #6366f1;
+        --secondary: #ec4899;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text-dark: #1e293b;
+        --text-gray: #64748b;
+      }
+
+      body {
+        font-family:
+          "Pretendard",
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg);
+        color: var(--text-dark);
+        line-height: 1.6;
+        word-break: keep-all;
+      }
+
+      /* 헤더: 그라데이션 적용 */
+      header {
+        background: linear-gradient(135deg, #4f46e5, #9333ea);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2rem;
+        letter-spacing: -1px;
+      }
+      header p {
+        margin-top: 10px;
+        opacity: 0.9;
+        font-weight: 300;
+      }
+
+      /* 섹션 스타일 */
+      section {
+        padding: 30px 20px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
+
+      .card {
+        background: var(--card);
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        border: 1px solid #f1f5f9;
+      }
+
+      .list-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+      }
+      .list-item:last-child {
+        border-bottom: none;
+      }
+
+      .badge {
+        background: #e0e7ff;
+        color: var(--primary);
+        font-size: 0.75rem;
+        font-weight: bold;
+        padding: 4px 10px;
+        border-radius: 8px;
+        margin-right: 12px;
+      }
+
+      .star {
+        color: #f59e0b;
+        margin-left: auto;
+      }
+
+      .tags {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+      }
+      .tag {
+        font-size: 0.8rem;
+        color: var(--secondary);
+        font-weight: 600;
+      }
+
+      footer {
+        text-align: center;
+        padding: 50px 20px;
+        color: var(--text-gray);
+        font-size: 0.85rem;
+        background: #f1f5f9;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🎮 Game Archive</h1>
+      <p>게임 가이드: 과거부터 미래까지 모든 플레이의 기록</p>
+    </header>
+
+    <section>
+      <h2>📜 게임의 역사</h2>
+      <div class="card">
+        <p style="margin: 0">
+          1950년대 최초의 전자 게임부터 시작해, 80년대 아케이드 전성기를 거쳐
+          오늘날 실사 같은 그래픽의 AAA급 게임까지. 게임은 단순한 놀이를 넘어
+          가장 역동적인 디지털 예술로 진화해왔습니다.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>⭐️ 내가 추천하는 게임</h2>
+      <div class="card" style="padding: 5px 20px">
+        <div class="list-item">
+          <span class="badge">TOP 1</span> <b>엘든 링</b>
+        </div>
+        <div class="list-item">
+          <span class="badge">TOP 2</span> <b>오버워치</b>
+        </div>
+        <div class="list-item">
+          <span class="badge">TOP 3</span> <b>마인크래프트</b>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🕹️ 내가 해본 게임 소개</h2>
+      <div class="card">
+        <div style="display: flex; align-items: center">
+          <strong>젤다의 전설: 야생의 숨결</strong>
+          <span class="star">★★★★★</span>
+        </div>
+        <p style="color: var(--text-gray); font-size: 0.95rem; margin: 10px 0">
+          내가 가고 싶은 곳이 길이 되는 놀라운 경험! 오픈월드 게임의 새로운
+          기준을 제시한 명작입니다. 제 인생 최고의 게임 중 하나로 꼽습니다.
+        </p>
+        <div class="tags">
+          <span class="tag">#오픈월드</span> <span class="tag">#명작</span>
+          <span class="tag">#모험</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🚀 할 예정인 게임</h2>
+      <div class="card">
+        <div class="list-item">📅 GTA 6 (내년 출시 예정)</div>
+        <div class="list-item">📅 몬스터 헌터 와일즈</div>
+        <div class="list-item">📅 할로우 나이트: 실크송</div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Game Archive. Your Ultimate Game Guide.</p>
+    </footer>
+  </body>
+</html>
