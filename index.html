@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKY REALM | OFFICIAL SITE</title>
+    <title>ANOTHER YOU | OFFICIAL SITE</title>
     <style>
-        /* 1. 디자인 포인트 컬러 설정 (하늘 테마) */
         :root {
-            --bg-sky: #e0f2fe;        /* 아주 연한 파스텔 하늘색 배경 */
-            --card-white: #ffffff;    /* 구름 같은 흰색 카드 */
-            --primary-blue: #0284c7;  /* 선명한 파란색 포인트 */
-            --accent-gold: #fbbf24;   /* 햇살 같은 노란색 강조 */
-            --text-dark: #0f172a;     /* 진한 글자색 (가독성) */
-            --text-gray: #64748b;     /* 보조 글자색 */
+            --sky-blue: #e0f2fe;
+            --deep-blue: #0369a1;
+            --magic-glow: #7dd3fc;
+            --text-dark: #0f172a;
         }
 
         body {
             margin: 0; padding: 0;
-            background-color: var(--bg-sky);
+            background-color: #f8fafc;
+            font-family: 'Pretendard', sans-serif;
             color: var(--text-dark);
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            line-height: 1.7;
             overflow-x: hidden;
-            word-break: keep-all;
         }
 
-        /* 2. 상단 히어로 섹션 (화창한 하늘 배경) */
+        /* 헤더 섹션: 신비로운 하늘 배경 */
         header {
-            height: 70vh;
-            background: linear-gradient(to bottom, rgba(224, 242, 254, 0.3), var(--bg-sky)),
-                        url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?q=80&w=2000'); /* 아름다운 구름 하늘 이미지 */
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 70%, #f8fafc),
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070'); /* 설산/북유럽 느낌 배경 */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -37,158 +32,126 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: #fff; /* 헤더 글자는 흰색으로 */
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        header h1 {
-            font-size: clamp(3.5rem, 12vw, 7rem);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            font-weight: 900;
+        /* 로고 이미지 스타일 */
+        .main-logo {
+            max-width: 600px;
+            width: 80%;
+            filter: drop-shadow(0 0 20px rgba(125, 211, 252, 0.6));
+            animation: float 3s ease-in-out infinite;
         }
 
-        header p {
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-text {
+            margin-top: -50px;
             font-size: 1.5rem;
-            letter-spacing: 4px;
-            margin-top: 15px;
-            font-weight: 300;
-            color: rgba(255,255,255,0.9);
-        }
-
-        /* 3. 사전 예약 버튼 (햇살 감성) */
-        .cta-button {
-            margin-top: 50px;
-            padding: 18px 45px;
-            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: var(--deep-blue);
             font-weight: bold;
-            color: #000;
-            background-color: var(--accent-gold);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
-            transition: 0.3s;
+            text-shadow: 0 0 10px white;
         }
 
-        .cta-button:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(251, 191, 36, 0.5);
-        }
-
-        /* 4. 컨텐츠 영역 */
+        /* 컨텐츠 영역 */
         .container {
             max-width: 1000px;
-            margin: -60px auto 100px;
+            margin: -100px auto 100px;
             padding: 0 20px;
         }
 
-        /* 구름 카드 디자인 */
         section {
-            background: var(--card-white);
-            border-radius: 25px;
+            background: white;
+            border-radius: 30px;
             padding: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid rgba(125, 211, 252, 0.2);
         }
 
         h2 {
-            font-size: 1.8rem;
-            color: var(--primary-blue);
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            font-size: 2rem;
+            color: var(--deep-blue);
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        /* 특징 섹션 그리드 */
-        .features-grid {
+        .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .feature-item {
-            background: #f8fafc;
+        .feature-box {
+            background: #f1f5f9;
             padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            text-align: center;
             transition: 0.3s;
         }
 
-        .feature-item:hover {
-            background: #fff;
-            transform: translateY(-8px);
-            border-color: var(--primary-blue);
-            box-shadow: 0 10px 20px rgba(2, 132, 195, 0.1);
+        .feature-box:hover {
+            transform: translateY(-5px);
+            background: var(--sky-blue);
         }
 
-        .feature-item h3 {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-            margin-top: 0;
+        .magic-btn {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #0284c7, #7dd3fc);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(2, 132, 195, 0.3);
+            transition: 0.3s;
         }
 
-        .feature-item p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            background: rgba(0,0,0,0.03);
+        .magic-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(2, 132, 195, 0.5);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <p>2026 WINTER GRAND OPEN</p>
-        <h1>[게임 제목]</h1>
-        <p>"하늘 너머의 모험이 시작됩니다"</p>
-        <button class="cta-button">PRE-REGISTER</button>
+        <img src="logo.jpg" alt="Another You Logo" class="main-logo">
+        <p class="hero-text">북유럽의 신화, 당신의 마법으로 깨어나다</p>
+        <a href="#" class="magic-btn">지금 사전예약 하기</a>
     </header>
 
     <div class="container">
-        
         <section>
-            <h2>🕊️ OVERVIEW</h2>
-            <p style="font-size: 1.1rem; color: var(--text-gray); line-height: 1.9;">
-                [게임 제목]은 끝없이 펼쳐진 <span style="color:var(--primary-blue); font-weight:bold;">파란 하늘과 떠다니는 섬</span>들을 배경으로 한 MMORPG입니다. 
-                당신은 자신만의 날개를 얻고, 구름 사이를 누비며 잃어버린 고대 공중 도시의 비밀을 밝혀내야 합니다.
+            <h2>❄️ WORLD SETTING</h2>
+            <p style="text-align: center; line-height: 2; color: var(--text-gray);">
+                세계수 이그드라실의 가지 끝에 걸린 아홉 개의 세상.<br>
+                고대 룬 마법을 사용하는 마지막 계승자가 되어,<br>
+                끝없는 설원과 신비로운 숲이 공존하는 **오픈월드**를 탐험하세요.
             </p>
         </section>
 
         <section>
-            <h2>🚀 KEY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <h3>🌬️ 무한 비행 시스템</h3>
-                    <p>스태미나 제한 없는 자유로운 비행을 경험하세요. 하늘 위 모든 곳이 당신의 전장입니다.</p>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🔮 룬 마법 시스템</h3>
+                    <p>8가지 속성의 룬을 조합하여 자신만의 강력한 마법을 창조하세요.</p>
                 </div>
-                <div class="feature-item">
-                    <h3>🏰 공중 도시 건설</h3>
-                    <p>자신만의 떠다니는 섬에 고유한 도시를 건설하고 다른 플레이어와 교류하세요.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>🐉 거대 비행수 전투</h3>
-                    <p>구름 속에 숨어있는 거대한 비행 몬스터들과의 스펙터클한 공중전을 즐기세요.</p>
+                <div class="feature-box">
+                    <h3>⚔️ 신화 속의 적</h3>
+                    <p>요르문간드와 서리 거인에 맞서 북유럽의 평화를 되찾으세요.</p>
                 </div>
             </div>
         </section>
-
     </div>
 
-    <footer>
-        <p>&copy; 2026 [사용자님 이름] STUDIO. ALL RIGHTS RESERVED.</p>
+    <footer style="text-align: center; padding: 50px; color: #94a3b8;">
+        &copy; 2026 ANOTHER YOU PROJECT. ALL RIGHTS RESERVED.
     </footer>
 
 </body>
