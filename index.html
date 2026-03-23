@@ -5,55 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANOTHER YOU | OFFICIAL SITE</title>
     <style>
+        /* 로고와 동일한 색상 및 포인트 컬러 설정 */
         :root {
-            --bg-main: #ffffff;      /* 순백색 배경 */
-            --bg-sub: #f8fafc;       /* 연한 회색 (구분용) */
-            --primary-blue: #0369a1; /* 로고와 어울리는 진한 파랑 */
-            --magic-blue: #e0f2fe;   /* 부드러운 하늘색 포인트 */
-            --text-main: #1e293b;    /* 가독성 좋은 진회색 글자 */
-            --text-sub: #64748b;     /* 설명용 흐린 글자 */
+            --pure-white: #ffffff;    /* 로고 배경과 동일한 색상 */
+            --logo-blue: #5b9bd5;     /* 로고의 메인 블루 톤 */
+            --ice-glow: #e0f2fe;      /* 부드러운 얼음 광채색 */
+            --text-main: #1e293b;     /* 가독성 높은 진회색 */
+            --text-sub: #64748b;      /* 보조 설명용 회색 */
         }
 
         body {
             margin: 0; padding: 0;
-            background-color: var(--bg-main);
+            background-color: var(--pure-white); /* 로고와 일치하는 배경색 */
             font-family: 'Pretendard', -apple-system, sans-serif;
             color: var(--text-main);
-            line-height: 1.7;
+            line-height: 1.8;
             overflow-x: hidden;
+            word-break: keep-all;
         }
 
-        /* 1. 헤더 섹션: 로고가 강조되는 화이트 레이아웃 */
+        /* 1. 헤더 섹션: 로고가 주인공이 되는 공간 */
         header {
-            height: 90vh;
-            background: radial-gradient(circle, #ffffff 0%, #f0f9ff 100%);
+            height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            border-bottom: 1px solid #e2e8f0;
+            background-color: var(--pure-white);
         }
 
         .main-logo {
-            max-width: 550px;
+            max-width: 600px;
             width: 85%;
-            /* 로고 주위에 은은한 마법 광채 효과 */
-            filter: drop-shadow(0 10px 30px rgba(3, 105, 161, 0.15));
+            /* 로고에 은은한 푸른 광채 효과 */
+            filter: drop-shadow(0 15px 40px rgba(91, 155, 213, 0.2));
             animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .hero-tagline {
-            margin-top: 20px;
-            font-size: 1.3rem;
-            letter-spacing: 6px;
-            color: var(--primary-blue);
-            font-weight: 700;
+        .hero-title {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            color: var(--logo-blue);
+            font-weight: 800;
             text-transform: uppercase;
         }
 
@@ -61,86 +61,96 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 50px 20px 100px;
         }
 
         section {
-            margin-bottom: 100px;
+            margin-bottom: 120px;
             text-align: center;
         }
 
         h2 {
-            font-size: 2.2rem;
-            color: var(--primary-blue);
+            font-size: 2.5rem;
+            color: var(--logo-blue);
             margin-bottom: 40px;
-            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* 제목 아래 신비로운 밑줄 효과 */
+        h2::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--logo-blue), transparent);
+            margin: 15px auto 0;
         }
 
         .world-desc {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--text-sub);
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
-            word-break: keep-all;
         }
 
-        /* 3. 특징 섹션: 깔끔한 그리드 디자인 */
+        /* 3. 특징 카드 (로고 톤 포인트) */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
+            gap: 30px;
+            margin-top: 60px;
         }
 
         .feature-card {
-            background: var(--bg-sub);
-            padding: 40px 30px;
-            border-radius: 24px;
-            border: 1px solid #f1f5f9;
-            transition: 0.3s ease;
+            background: #f8fafc;
+            padding: 50px 30px;
+            border-radius: 30px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.4s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            background: white;
-            box-shadow: 0 20px 40px rgba(3, 105, 161, 0.08);
-            border-color: var(--magic-blue);
+            transform: translateY(-12px);
+            background: var(--pure-white);
+            border-color: var(--logo-blue);
+            box-shadow: 0 20px 40px rgba(91, 155, 213, 0.1);
         }
 
         .feature-card h3 {
-            color: var(--primary-blue);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+            color: var(--logo-blue);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
 
-        /* 4. 액션 버튼: 시원한 블루 그라데이션 */
+        /* 4. 액션 버튼 (로고 색상 그라데이션) */
         .cta-btn {
             display: inline-block;
-            margin-top: 50px;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #0369a1, #0ea5e9);
+            margin-top: 60px;
+            padding: 22px 70px;
+            background: linear-gradient(135deg, #5b9bd5, #8bc3eb);
             color: white;
             text-decoration: none;
-            font-weight: 800;
-            border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(3, 105, 161, 0.2);
-            transition: 0.3s;
+            font-weight: 900;
+            border-radius: 60px;
+            box-shadow: 0 12px 30px rgba(91, 155, 213, 0.3);
+            transition: 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .cta-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(3, 105, 161, 0.3);
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(91, 155, 213, 0.5);
         }
 
         footer {
-            padding: 60px;
-            background: var(--bg-sub);
+            padding: 80px;
+            background: #f1f5f9;
             text-align: center;
             color: var(--text-sub);
-            font-size: 0.85rem;
-            border-top: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -148,34 +158,34 @@
 
     <header>
         <img src="logo.jpg" alt="ANOTHER YOU" class="main-logo">
-        <div class="hero-tagline">ANOTHER WORLD, ANOTHER YOU</div>
-        <a href="#" class="cta-btn">PRE-REGISTER NOW</a>
+        <div class="hero-title">Another World, Another You</div>
+        <a href="#" class="cta-btn">Register for Adventure</a>
     </header>
 
     <div class="container">
         
         <section>
-            <h2>❄️ MYTH & MAGIC</h2>
+            <h2>THE MYTH UNFOLDS</h2>
             <p class="world-desc">
-                북유럽 신화의 웅장한 서사 위에 펼쳐지는 오픈월드 RPG.<br>
-                고대 룬 마법의 힘으로 당신 안에 잠든 또 다른 자아를 깨우세요.<br>
-                이그드라실의 부름이 지금 시작됩니다.
+                북유럽 신화의 눈부신 서사 위에 펼쳐지는 웅장한 오픈월드.<br>
+                당신 안에 잠든 룬 마법의 고귀한 힘을 깨워 세상을 구원하세요.<br>
+                이그드라실의 가지가 당신의 길을 안내할 것입니다.
             </p>
         </section>
 
         <section>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>🔮 RUNE MAGIC</h3>
-                    <p>수만 가지 조합의 룬을 사용하여 나만의 독창적인 마법 스펠을 완성하세요.</p>
+                    <h3>🧙‍♂️ RUNE MAGIC</h3>
+                    <p>수천 년간 잊혀졌던 고대 룬 문자를 조합하여 실시간으로 강력한 마법을 창조해 보세요.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>⚔️ RAID BOSS</h3>
-                    <p>신화 속 서리 거인과 요르문간드에 맞서 전설적인 장비를 획득하세요.</p>
+                    <h3>🐉 MYTHIC BOSSES</h3>
+                    <p>북유럽 신화 속 전설적인 서리 거인과 신성한 생명체들에 맞서 위대한 도전을 시작하세요.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🗺️ OPEN WORLD</h3>
-                    <p>끊김 없는 심리스 맵을 탐험하며 고대 신들의 흔적을 추적하세요.</p>
+                    <h3>🌌 VAST WORLD</h3>
+                    <p>구름 위 성지부터 심연의 지하 던전까지, 경계 없는 오픈월드를 자유롭게 탐험하세요.</p>
                 </div>
             </div>
         </section>
@@ -183,7 +193,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 ANOTHER YOU PROJECT. ALL RIGHTS RESERVED.</p>
+        <p>&copy; 2026 ANOTHER YOU STUDIO. BEYOND THE MYTH.</p>
     </footer>
 
 </body>
