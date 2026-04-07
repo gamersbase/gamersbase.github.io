@@ -1,200 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANOTHER YOU | OFFICIAL</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Game Archive</title>
     <style>
-        /* 로고와 동일한 색상 및 포인트 컬러 설정 */
-        :root {
-            --pure-white: #ffffff;    /* 로고 배경과 동일한 색상 */
-            --logo-blue: #5b9bd5;     /* 로고의 메인 블루 톤 */
-            --ice-glow: #e0f2fe;      /* 부드러운 얼음 광채색 */
-            --text-main: #1e293b;     /* 가독성 높은 진회색 */
-            --text-sub: #64748b;      /* 보조 설명용 회색 */
-        }
+      /* 기본 설정 및 컬러 테마 */
+      :root {
+        --primary: #6366f1;
+        --secondary: #ec4899;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text-dark: #1e293b;
+        --text-gray: #64748b;
+      }
 
-        body {
-            margin: 0; padding: 0;
-            background-color: var(--pure-white); /* 로고와 일치하는 배경색 */
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            color: var(--text-main);
-            line-height: 1.8;
-            overflow-x: hidden;
-            word-break: keep-all;
-        }
+      body {
+        font-family:
+          "Pretendard",
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg);
+        color: var(--text-dark);
+        line-height: 1.6;
+        word-break: keep-all;
+      }
 
-        /* 1. 헤더 섹션: 로고가 주인공이 되는 공간 */
-        header {
-            height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background-color: var(--pure-white);
-        }
+      /* 헤더: 그라데이션 적용 */
+      header {
+        background: linear-gradient(135deg, #4f46e5, #9333ea);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
 
-        .main-logo {
-            max-width: 600px;
-            width: 85%;
-            /* 로고에 은은한 푸른 광채 효과 */
-            filter: drop-shadow(0 15px 40px rgba(91, 155, 213, 0.2));
-            animation: float 4s ease-in-out infinite;
-        }
+      header h1 {
+        margin: 0;
+        font-size: 2rem;
+        letter-spacing: -1px;
+      }
+      header p {
+        margin-top: 10px;
+        opacity: 0.9;
+        font-weight: 300;
+      }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+      /* 섹션 스타일 */
+      section {
+        padding: 30px 20px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
 
-        .hero-title {
-            margin-top: 10px;
-            font-size: 1.2rem;
-            letter-spacing: 8px;
-            color: var(--logo-blue);
-            font-weight: 800;
-            text-transform: uppercase;
-        }
+      h2 {
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
 
-        /* 2. 메인 컨텐츠 컨테이너 */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 50px 20px 100px;
-        }
+      .card {
+        background: var(--card);
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        border: 1px solid #f1f5f9;
+      }
 
-        section {
-            margin-bottom: 120px;
-            text-align: center;
-        }
+      .list-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+      }
+      .list-item:last-child {
+        border-bottom: none;
+      }
 
-        h2 {
-            font-size: 2.5rem;
-            color: var(--logo-blue);
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
+      .badge {
+        background: #e0e7ff;
+        color: var(--primary);
+        font-size: 0.75rem;
+        font-weight: bold;
+        padding: 4px 10px;
+        border-radius: 8px;
+        margin-right: 12px;
+      }
 
-        /* 제목 아래 신비로운 밑줄 효과 */
-        h2::after {
-            content: "";
-            display: block;
-            width: 60%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--logo-blue), transparent);
-            margin: 15px auto 0;
-        }
+      .star {
+        color: #f59e0b;
+        margin-left: auto;
+      }
 
-        .world-desc {
-            font-size: 1.2rem;
-            color: var(--text-sub);
-            max-width: 750px;
-            margin: 0 auto;
-        }
+      .tags {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+      }
+      .tag {
+        font-size: 0.8rem;
+        color: var(--secondary);
+        font-weight: 600;
+      }
 
-        /* 3. 특징 카드 (로고 톤 포인트) */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .feature-card {
-            background: #f8fafc;
-            padding: 50px 30px;
-            border-radius: 30px;
-            border: 1px solid #e2e8f0;
-            transition: all 0.4s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-12px);
-            background: var(--pure-white);
-            border-color: var(--logo-blue);
-            box-shadow: 0 20px 40px rgba(91, 155, 213, 0.1);
-        }
-
-        .feature-card h3 {
-            color: var(--logo-blue);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        /* 4. 액션 버튼 (로고 색상 그라데이션) */
-        .cta-btn {
-            display: inline-block;
-            margin-top: 60px;
-            padding: 22px 70px;
-            background: linear-gradient(135deg, #5b9bd5, #8bc3eb);
-            color: white;
-            text-decoration: none;
-            font-weight: 900;
-            border-radius: 60px;
-            box-shadow: 0 12px 30px rgba(91, 155, 213, 0.3);
-            transition: 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .cta-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 15px 40px rgba(91, 155, 213, 0.5);
-        }
-
-        footer {
-            padding: 80px;
-            background: #f1f5f9;
-            text-align: center;
-            color: var(--text-sub);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
+      footer {
+        text-align: center;
+        padding: 50px 20px;
+        color: var(--text-gray);
+        font-size: 0.85rem;
+        background: #f1f5f9;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <header>
-        <img src="logo.jpg" alt="ANOTHER YOU" class="main-logo">
-        <div class="hero-title">Another World, Another You</div>
-        <a href="#" class="cta-btn">Register for Adventure</a>
+      <h1>🎮 Game Archive</h1>
+      <p>과거부터 미래까지 모든 플레이의 기록</p>
     </header>
 
-    <div class="container">
-        
-        <section>
-            <h2>THE MYTH UNFOLDS</h2>
-            <p class="world-desc">
-                북유럽 신화의 눈부신 서사 위에 펼쳐지는 웅장한 오픈월드.<br>
-                당신 안에 잠든 룬 마법의 고귀한 힘을 깨워 세상을 구원하세요.<br>
-                이그드라실의 가지가 당신의 길을 안내할 것입니다.
-            </p>
-        </section>
+    <section>
+      <h2>📜 게임의 역사</h2>
+      <div class="card">
+        <p style="margin: 0">
+          1950년대 최초의 전자 게임부터 시작해, 80년대 아케이드 전성기를 거쳐
+          오늘날 실사 같은 그래픽의 AAA급 게임까지. 게임은 단순한 놀이를 넘어
+          가장 역동적인 디지털 예술로 진화해왔습니다.
+        </p>
+      </div>
+    </section>
 
-        <section>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>🧙‍♂️ RUNE MAGIC</h3>
-                    <p>수천 년간 잊혀졌던 고대 룬 문자를 조합하여 실시간으로 강력한 마법을 창조해 보세요.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🐉 MYTHIC BOSSES</h3>
-                    <p>북유럽 신화 속 전설적인 서리 거인과 신성한 생명체들에 맞서 위대한 도전을 시작하세요.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🌌 VAST WORLD</h3>
-                    <p>구름 위 성지부터 심연의 지하 던전까지, 경계 없는 오픈월드를 자유롭게 탐험하세요.</p>
-                </div>
+    <section>
+        <h2>🎮 내가 해봤던 게임</h2>
+        <div class="card" style="padding: 5px 20px;">
+            <div class="list-item">
+                <span class="badge" style="background: #ffedd5; color: #9a3412;">PAUSE</span> 
+                <b>엘든 링</b>
             </div>
-        </section>
+            <div class="list-item">
+                <span class="badge" style="background: #f1f5f9; color: #475569;">ENDLESS</span> 
+                <b>오버워치</b>
+            </div>
+            <div class="list-item">
+                <span class="badge" style="background: #f1f5f9; color: #475569;">ENDLESS</span> 
+                <b>마인크래프트</b>
+            </div>
+            <div class="list-item">
+                <span class="badge" style="background: #f1f5f9; color: #475569;">ENDLESS</span> 
+                <b>리그 오브 레전드</b>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <section>
+      <h2>🕹️ 내가 해본 게임 소개</h2>
+      <div class="card">
+        <div style="display: flex; align-items: center">
+          <strong>젤다의 전설: 야생의 숨결</strong>
+          <span class="star">★★★★★</span>
+        </div>
+        <p style="color: var(--text-gray); font-size: 0.95rem; margin: 10px 0">
+          내가 가고 싶은 곳이 길이 되는 놀라운 경험! 오픈월드 게임의 새로운
+          기준을 제시한 명작입니다. 제 인생 최고의 게임 중 하나로 꼽습니다.
+        </p>
+        <div class="tags">
+          <span class="tag">#오픈월드</span> <span class="tag">#명작</span>
+          <span class="tag">#모험</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🚀 할 예정인 게임</h2>
+      <div class="card">
+        <div class="list-item">📅 GTA 6 (출시 예정)</div>
+        <div class="list-item">📅 붉은사막</div>
+        <div class="list-item">📅 타르코프</div>
+      </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 ANOTHER YOU STUDIO. BEYOND THE MYTH.</p>
+      <p>&copy; 2026 Game Archive. Your Ultimate Game Guide.</p>
     </footer>
-
-</body>
+  </body>
 </html>
