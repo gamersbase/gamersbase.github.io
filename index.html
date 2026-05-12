@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game & Info Archive</title>
+    <title>My Game & Tech Roadmap</title>
     <style>
       :root {
         --primary: #6366f1;
@@ -53,135 +53,124 @@
       header {
         background: linear-gradient(135deg, #4f46e5, #9333ea);
         color: white;
-        padding: 50px 20px;
+        padding: 60px 20px;
         text-align: center;
       }
-
-      header h1 { margin: 0; font-size: 2rem; }
+      header h1 { margin: 0; font-size: 2.2rem; }
       header p { margin-top: 10px; opacity: 0.9; }
 
-      section { padding: 30px 20px; max-width: 600px; margin: 0 auto; }
-      h2 { font-size: 1.4rem; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--primary); }
-      .card { background: var(--card); padding: 20px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); margin-bottom: 20px; border: 1px solid #f1f5f9; }
+      section { padding: 40px 20px; max-width: 650px; margin: 0 auto; }
+      h2 { font-size: 1.5rem; display: flex; align-items: center; gap: 10px; margin-bottom: 25px; color: var(--primary); }
+      .card { background: var(--card); padding: 25px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); margin-bottom: 25px; border: 1px solid #f1f5f9; }
 
-      /* 새 섹션용 스타일 */
-      .grid-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; }
-      .grid-item { padding: 10px; background: #f1f5f9; border-radius: 10px; font-size: 0.85rem; font-weight: bold; }
-      .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-      .gallery-item { background: #e2e8f0; height: 100px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.75rem; }
-      .sns-list { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-      .sns-btn { padding: 6px 12px; border-radius: 12px; text-decoration: none; color: white; font-size: 0.75rem; font-weight: bold; }
-
+      .list-item { padding: 12px 0; border-bottom: 1px solid #f8fafc; }
+      .list-item:last-child { border-bottom: none; }
+      .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
+      .tech-item { padding: 15px; background: #f1f5f9; border-radius: 12px; text-align: center; font-weight: bold; font-size: 0.85rem; }
+      
+      .project-card { border-left: 4px solid var(--primary); padding-left: 15px; margin-bottom: 15px; }
+      .project-title { font-weight: bold; color: var(--text-dark); display: block; margin-bottom: 5px; }
+      
       footer { text-align: center; padding: 50px 20px; color: var(--text-gray); font-size: 0.85rem; background: #f1f5f9; }
     </style>
   </head>
   <body>
     <nav>
       <ul>
-        <li><a href="#history">게임의 역사</a></li>
-        <li><a href="#genres">게임 장르</a></li>
         <li><a href="#intro">홈소개</a></li>
-        <li><a href="#tech">IT기술</a></li>
-        <li><a href="#gallery">사진</a></li>
-        <li><a href="#content">Activity</a></li>
+        <li><a href="#history">게임역사</a></li>
+        <li><a href="#dream">꿈&계획</a></li>
+        <li><a href="#web-tech">웹기술</a></li>
+        <li><a href="#it-info">IT정보</a></li>
         <li><a href="#sns">SNS</a></li>
       </ul>
     </nav>
 
     <header>
-      <h1>🎮 Game Archive</h1>
-      <p>디지털 예술로서의 게임과 기술의 기록</p>
+      <h1>🚀 Digital & Game Archive</h1>
+      <p>게임의 역사부터 미래를 향한 기술 로드맵까지</p>
     </header>
-
-    <div id="history">
-      <section>
-        <h2>📜 게임의 역사</h2>
-        <div class="card">
-          <p style="margin: 0">
-            1950년대 최초의 전자 게임부터 시작해, 80년대 아케이드 전성기를 거쳐
-            오늘날 실사 같은 그래픽의 AAA급 게임까지. 게임은 단순한 놀이를 넘어
-            가장 역동적인 디지털 예술로 진화해왔습니다.
-          </p>
-        </div>
-      </section>
-    </div>
-
-    <section id="genres">
-      <h2>🕹️ 주요 게임 장르 가이드</h2>
-      <div class="card">
-        <div style="margin-bottom: 20px;">
-          <p style="margin: 0; font-weight: bold; color: var(--primary); font-size: 1.1rem;">1. 오픈 월드 (Open World)</p>
-          <p style="font-size: 0.95rem; color: var(--text-dark); margin: 8px 0;">거대한 가상 세계를 자유롭게 탐험하며 사용자가 원하는 순서대로 목표를 달성하는 장르입니다.</p>
-          <p style="font-size: 0.9rem; color: var(--text-gray);">🎯 <b>대표작:</b> 젤다의 전설, GTA, 엘든 링</p>
-        </div>
-        <div style="margin-bottom: 20px;">
-          <p style="margin: 0; font-weight: bold; color: var(--primary); font-size: 1.1rem;">2. FPS (First-Person Shooter)</p>
-          <p style="font-size: 0.95rem; color: var(--text-dark); margin: 8px 0;">캐릭터의 시점에서 사격 무기를 사용하여 적을 제압하는 1인칭 슈팅 게임입니다.</p>
-          <p style="font-size: 0.9rem; color: var(--text-gray);">🎯 <b>대표작:</b> 오버워치, 콜 오브 듀티, 카운터 스트라이크</p>
-        </div>
-        <div>
-          <p style="margin: 0; font-weight: bold; color: var(--primary); font-size: 1.1rem;">3. AOS / MOBA</p>
-          <p style="font-size: 0.95rem; color: var(--text-dark); margin: 8px 0;">팀원들과 협력해 전술을 짜고 상대방의 기지를 파괴하는 실시간 전략 장르입니다.</p>
-          <p style="font-size: 0.9rem; color: var(--text-gray);">🎯 <b>대표작:</b> 리그 오브 레전드, 도타 2</p>
-        </div>
-      </div>
-    </section>
-
-    <hr style="border: 0; height: 1px; background: #e2e8f0; margin: 40px 0;">
 
     <section id="intro">
       <h2>🏠 홈페이지 소개</h2>
       <div class="card">
-        <p style="margin: 0">이 아카이브는 게임의 역사 및 장르 정보와 함께 최신 IT 기술 및 AI 앱 개발 과정을 담기 위해 제작되었습니다.</p>
+        <p style="margin: 0">
+          이곳은 게임의 역사와 장르에 대한 깊이 있는 정보와 함께, 
+          미래의 IT 전문가가 되기 위한 학습 과정 및 프로젝트를 기록하는 통합 아카이브입니다.
+        </p>
       </div>
     </section>
 
-    <section id="tech">
-      <h2>🛠️ Web Stack</h2>
+    <section id="history">
+      <h2>📜 게임의 역사 & 장르</h2>
       <div class="card">
-        <div class="grid-list">
-          <div class="grid-item">HTML5</div>
-          <div class="grid-item">CSS3</div>
-          <div class="grid-item">JavaScript</div>
+        <p style="margin-bottom: 20px; font-size: 0.95rem;">
+          1950년대부터 시작된 게임의 역사는 오늘날 가장 역동적인 디지털 예술로 진화했습니다.
+        </p>
+        <div class="project-card">
+          <span class="project-title">오픈 월드 (Open World)</span>
+          <p style="margin:0; font-size: 0.85rem; color: var(--text-gray);">대표작: 젤다의 전설, GTA, 엘든 링</p>
+        </div>
+        <div class="project-card">
+          <span class="project-title">FPS (1인칭 슈팅)</span>
+          <p style="margin:0; font-size: 0.85rem; color: var(--text-gray);">대표작: 오버워치, 콜 오브 듀티, 카스</p>
         </div>
       </div>
     </section>
 
-    <section id="gallery">
-      <h2>🖼️ 사진 갤러리</h2>
+    <section id="dream">
+      <h2>🎯 꿈을 위한 계획 & 프로젝트</h2>
       <div class="card">
-        <div class="gallery">
-          <div class="gallery-item">GAME ART 1</div>
-          <div class="gallery-item">GAME ART 2</div>
+        <div class="project-card">
+          <span class="project-title">Step 1. 웹 개발 기초 마스터</span>
+          <p style="margin:0; font-size: 0.9rem; color: var(--text-gray);">HTML/CSS/JS를 활용하여 자유로운 웹 UI 구현 능력을 확보합니다.</p>
+        </div>
+        <div class="project-card" style="border-left-color: var(--secondary);">
+          <span class="project-title">Step 2. 개인 프로젝트: 포트폴리오 사이트</span>
+          <p style="margin:0; font-size: 0.9rem; color: var(--text-gray);">자신만의 색깔이 담긴 디지털 아카이브를 구축하고 업데이트합니다.</p>
         </div>
       </div>
     </section>
 
-    <section id="content">
-      <h2>💡 Activity</h2>
+    <section id="web-tech">
+      <h2>🛠️ Web Development Stack</h2>
       <div class="card">
-        <div class="grid-list">
-          <div class="grid-item">AI 콘텐츠</div>
-          <div class="grid-item">프로그래밍</div>
-          <div class="grid-item">AI 앱</div>
+        <div class="tech-grid">
+          <div class="tech-item" style="color: #e34f26;">HTML5</div>
+          <div class="tech-item" style="color: #1572b6;">CSS3</div>
+          <div class="tech-item" style="color: #f7df1e; background: #333;">JS</div>
         </div>
-        <div style="margin-top:15px; text-align:center;">
-          <a href="taghtml.html" style="font-size:0.8rem; font-weight:bold; color:var(--primary);">[상세 태그 예제 페이지 이동]</a>
+        <div style="margin-top: 20px; text-align: center;">
+          <a href="taghtml.html" style="font-size:0.8rem; font-weight:bold; color:var(--primary); text-decoration: none;">[상세 HTML 태그 가이드 바로가기]</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="it-info">
+      <h2>🌐 IT 정보 세션</h2>
+      <div class="card">
+        <div class="list-item">
+          <strong>🤖 최신 AI 트렌드</strong>
+          <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-gray);">생성형 AI 기술이 개발 환경에 주는 변화와 활용법</p>
+        </div>
+        <div class="list-item">
+          <strong>💻 소프트웨어 아키텍처</strong>
+          <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-gray);">효율적인 코드 구조와 유지보수 가능한 설계 학습</p>
         </div>
       </div>
     </section>
 
     <section id="sns">
-      <h2>📱 SNS Channels</h2>
+      <h2>📱 Contact</h2>
       <div class="card">
-        <div class="sns-list">
-          <a href="#" class="sns-btn" style="background: #e4405f;">Instagram</a>
+        <div style="display: flex; justify-content: center;">
+          <a href="#" style="padding: 10px 25px; border-radius: 15px; text-decoration: none; color: white; font-size: 0.85rem; font-weight: bold; background: #e4405f;">Instagram</a>
         </div>
       </div>
     </section>
 
     <footer>
-      <p>&copy; 2026 Game Archive. 정보 제공을 위한 디지털 가이드.</p>
+      <p>&copy; 2026 My Digital Roadmap. All rights reserved.</p>
     </footer>
   </body>
 </html>
