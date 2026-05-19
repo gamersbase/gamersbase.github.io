@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>select/textArea</p>
+    <form action="text.jsp" method="post">
+        <label for="ai">Select:</label>
+        <select id="ai" name="ai">
+            <option value="deep">Deep</option>
+            <option value="alpha">Alpha</option>
+            <option value="chatgpt">chatgpt</option>
+            <option value="python">Python</option>
+        </select>
+        <label for="message">문의사항:</label><br>
+        <textarea id="message" name="message" rows="10" cols="30" placeholder="문의사항을 입력하세요..."></textarea>
+        <br><br>
+        <input type="submit" value="submit">
+        <input type="reset" value="취소">
+    </form>
+</body>
+</html>
