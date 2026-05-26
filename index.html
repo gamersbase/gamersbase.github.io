@@ -43,7 +43,7 @@
       h2 { font-size: 1.6rem; display: flex; align-items: center; gap: 12px; margin-bottom: 25px; color: var(--primary); }
       .card { background: var(--card); padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); margin-bottom: 25px; }
 
-      /* --- [핵심] 탭 버튼 스타일 --- */
+      /* 탭 버튼 스타일 */
       .tab-container { display: flex; gap: 10px; margin-bottom: 20px; }
       .tab-btn {
         flex: 1; padding: 12px; border: none; border-radius: 10px;
@@ -115,12 +115,15 @@
         <div id="html-list" class="code-content active">
           <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-gray);">HTML 실습 파일 목록</p>
           <div class="link-list">
-            <a href="html/htmlTag.html">html 태그 기초</a>
+            <a href="html/htmlTag.html">html</a>
           </div>
         </div>
 
         <div id="css-list" class="code-content">
-          <p style="padding: 20px; text-align: center; color: var(--text-gray);">CSS 레이아웃 및 스타일 실습 준비 중...</p>
+          <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-gray);">CSS 실습 파일 목록</p>
+          <div class="link-list">
+            <a href="css/htmlCSs.html">CSS</a>
+          </div>
         </div>
 
         <div id="js-list" class="code-content">
@@ -151,23 +154,18 @@
 
     <script>
       function showCode(type) {
-        // 모든 리스트 숨기기
         const contents = document.querySelectorAll('.code-content');
         contents.forEach(content => content.classList.remove('active'));
 
-        // 모든 버튼 비활성화
         const tabs = document.querySelectorAll('.tab-btn');
         tabs.forEach(tab => tab.classList.remove('active'));
 
-        // 선택된 것만 보여주기
         document.getElementById(type + '-list').classList.add('active');
         
-        // 현재 누른 버튼 활성화 (이벤트 타겟 찾기)
         const activeBtn = Array.from(tabs).find(tab => tab.textContent.toLowerCase() === type);
         if (activeBtn) activeBtn.classList.add('active');
       }
 
-      // 랜덤 이미지 기능 유지
       window.onload = function() {
         const img = document.getElementById('randomImg');
         img.src = `https://picsum.photos/seed/${Math.floor(Math.random() * 1000)}/800/400`;
