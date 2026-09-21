@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트(JavaScript) 삽입 방식 정리</title>
+  
+  <!-- 1. 외부 자바스크립트 파일 연결 방식 (예제 8-2) -->
+  <!-- <script src="예제8-2externjs.js"></script> -->
+  
+  <style>
+    /* 문서 기본 스타일 */
+    body {
+      font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 8px;
+    }
+
+    /* 요약 섹션 스타일 */
+    .summary-section {
+      background-color: #eef7fc;
+      border-left: 5px solid #3498db;
+      padding: 15px 20px;
+      border-radius: 4px;
+      margin-bottom: 30px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .summary-card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #e1e8ed;
+    }
+
+    .summary-card h4 {
+      margin-top: 0;
+      color: #2980b9;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+
+    code {
+      background-color: #f0f0f0;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: Consolas, monospace;
+      color: #d63384;
+    }
+
+    /* 실습 디스플레이 영역 */
+    .demo-stage {
+      background-color: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .demo-item {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .demo-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .output-box {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+  </style>
+
+  <!-- 2. 내부 자바스크립트 방식 (예제 8-3) -->
+  <script>
+    // <head> 태그 내에서 실행되는 스크립트
+    console.log("내부 스크립트 (<head>) 실행됨");
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <h1>AI JavaScript Page</h1>
+
+    <!-- 핵심 개념 정리 영역 -->
+    <section class="summary-section">
+      <h2>[핵심요약] 자바스크립트(JavaScript) 개요</h2>
+      
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>1. 웹 기술의 역할 분담</h4>
+          <ul>
+            <li><strong>HTML:</strong> 문서의 구조와 내용 담당</li>
+            <li><strong>CSS:</strong> 디자인과 레이아웃 담당</li>
+            <li><strong>JavaScript:</strong> 동적 반응과 사용자 동작 담당</li>
+          </ul>
+        </div>
+
+        <div class="summary-card">
+          <h4>2. 자바스크립트 특징 및 역사</h4>
+          <ul>
+            <li>개발자: 넷스케이프의 브렌던 아이크</li>
+            <li>초기명 LiveScript → JavaScript (현재 ECMAScript 표준 사용)</li>
+            <li>컴파일 과정 없이 실행되는 <strong>인터프리터 언어</strong></li>
+            <li>객체 기반(Object-based) 및 함수형 프로그래밍 지원</li>
+          </ul>
+        </div>
+
+        <div class="summary-card">
+          <h4>3. 자바스크립트 삽입 방법 3가지</h4>
+          <ul>
+            <li><strong>외부 JS:</strong> <code>&lt;script src="파일명.js"&gt;&lt;/script&gt;</code></li>
+            <li><strong>내부 JS (&lt;head&gt;):</strong> <code>&lt;head&gt;</code> 내부 <code>&lt;script&gt;</code> 작성</li>
+            <li><strong>인라인 JS (&lt;body&gt;):</strong> <code>&lt;body&gt;</code> 내 원하는 위치에 <code>&lt;script&gt;</code> 작성</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3개 예제 통합 데모 영역 -->
+    <section>
+      <h2>자바스크립트 삽입 방식별 실행 예제</h2>
+      
+      <div class="demo-stage">
+        <!-- 외부 자바스크립트 설명 -->
+        <div class="demo-item">
+          <h3>1. 외부 자바스크립트 (External JS) - 예제 8-2</h3>
+          <p>별도의 <code>.js</code> 파일을 생성하고 <code>src</code> 속성을 통해 연결합니다. (코드 재사용에 용이)</p>
+          <pre><code>&lt;script src="예제8-2externjs.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+
+        <!-- 내부 자바스크립트 설명 및 동적 출력 -->
+        <div class="demo-item">
+          <h3>2. 내부 자바스크립트 (Internal JS - Head) - 예제 8-3</h3>
+          <p><code>&lt;head&gt;</code> 태그 안에 <code>&lt;script&gt;</code> 블록을 추가하여 정의합니다.</p>
+        </div>
+
+        <!-- 인라인 자바스크립트 방식 (예제 8-4) -->
+        <div class="demo-item">
+          <h3>3. 인라인 자바스크립트 (Inline JS - Body) - 예제 8-4</h3>
+          <p><code>&lt;body&gt;</code> 태그 안의 특정 위치에 직접 스크립트를 작성하여 요소를 출력합니다.</p>
+          
+          <div class="output-box">
+            <!-- 3. 인라인 자바스크립트 방식 적용 -->
+            <script>
+              /* document.write() : HTML 문서에 텍스트 출력 */
+              document.write("My First JavaScript Using AI");
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>
