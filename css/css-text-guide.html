@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML CSS 텍스트 속성 완전 가이드</title>
+  <style>
+    /* ── 기본 페이지 설정 ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #222;
+      background: #fff;
+    }
+
+    /* ── 인쇄/페이지 레이아웃 ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 20px;
+      padding: 20mm 18mm;
+      background: #fff;
+      border: 1px solid #ddd;
+      page-break-after: always;
+    }
+
+    /* ── 헤더 ── */
+    .page-header {
+      text-align: center;
+      border-bottom: 2px solid #2c3e50;
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+    }
+    .page-header h1 {
+      font-size: 20px;
+      color: #2c3e50;
+      letter-spacing: 1px;
+    }
+    .page-header p {
+      font-size: 11px;
+      color: #777;
+      margin-top: 3px;
+    }
+    .page-num {
+      text-align: right;
+      font-size: 11px;
+      color: #999;
+      margin-top: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 6px;
+    }
+
+    /* ── 섹션 제목 ── */
+    h2 {
+      font-size: 14px;
+      color: #2c3e50;
+      background: #ecf0f1;
+      padding: 5px 10px;
+      border-left: 4px solid #3498db;
+      margin: 14px 0 8px;
+    }
+
+    /* ── 예제 카드 ── */
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .ex {
+      border: 1px solid #dde;
+      border-radius: 6px;
+      padding: 10px;
+      background: #fafafa;
+    }
+
+    .ex-title {
+      font-size: 11px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 4px;
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 3px;
+    }
+
+    .ex-property {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: #c0392b;
+      background: #fff5f5;
+      border: 1px solid #f5c6cb;
+      border-radius: 3px;
+      padding: 2px 5px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .ex-result {
+      margin-top: 5px;
+      padding: 6px;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+
+    .ex-desc {
+      font-size: 10.5px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    /* ── 색상 테이블 ── */
+    .color-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    .color-table th {
+      background: #2c3e50;
+      color: #fff;
+      padding: 5px 8px;
+      text-align: left;
+    }
+    .color-table td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .color-table tr:nth-child(even) { background: #f9f9f9; }
+    .color-swatch {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.15);
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* ── 1. font-family ── */
+    .ex1-result { font-family: Georgia, serif; font-size: 15px; color: #2c3e50; }
+
+    /* ── 2. font-size ── */
+    .ex2-result { font-size: 22px; color: #27ae60; font-weight: bold; }
+
+    /* ── 3. font-weight & font-style ── */
+    .ex3-result { font-weight: 300; font-style: italic; color: #8e44ad; }
+
+    /* ── 4. text-align & line-height ── */
+    .ex4-result { text-align: justify; line-height: 2; font-size: 12px; color: #555; }
+
+    /* ── 5. text-shadow ── */
+    .ex5-result {
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 2px 2px 6px #e74c3c, -1px -1px 3px #f39c12;
+      color: #fff;
+      background: #2c3e50;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+
+    /* ── 6. letter-spacing & word-spacing ── */
+    .ex6-result {
+      letter-spacing: 4px;
+      word-spacing: 12px;
+      font-size: 13px;
+      color: #16a085;
+      text-transform: uppercase;
+    }
+
+    /* ── 7. text-decoration ── */
+    .ex7-a { text-decoration: underline wavy #e74c3c; font-size: 14px; }
+    .ex7-b { text-decoration: line-through double #7f8c8d; margin-left: 10px; font-size: 14px; }
+    .ex7-c { text-decoration: overline #2980b9; margin-left: 10px; font-size: 14px; }
+
+    /* ── 8. text-transform ── */
+    .ex8-upper { text-transform: uppercase; color: #c0392b; font-weight: bold; }
+    .ex8-lower { text-transform: lowercase; color: #27ae60; margin-left: 8px; }
+    .ex8-cap   { text-transform: capitalize; color: #2980b9; margin-left: 8px; }
+
+    /* ── 9. direction & unicode-bidi ── */
+    .ex9-rtl {
+      direction: rtl;
+      unicode-bidi: bidi-override;
+      font-size: 13px;
+      color: #8e44ad;
+      border-left: 3px solid #9b59b6;
+      padding-left: 8px;
+    }
+    .ex9-ltr {
+      direction: ltr;
+      font-size: 13px;
+      color: #16a085;
+      border-left: 3px solid #1abc9c;
+      padding-left: 8px;
+      margin-top: 4px;
+    }
+
+    /* ── 10. box-shadow(텍스트 포함 종합) ── */
+    .ex10-result {
+      font-size: 16px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: #1a1a2e;
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-shadow: 0 0 8px #00d4ff, 0 0 20px #00d4ff;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+    }
+
+    @media print {
+      .page { border: none; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ PAGE 1 ═══════════════════════════════════ -->
+<div class="page">
+
+  <div class="page-header">
+    <h1>HTML/CSS 텍스트 & 색상 속성 완전 가이드</h1>
+    <p>font · text · shadow · direction · decoration · transform · 16진수 색상</p>
+  </div>
+
+  <!-- ① font 속성들 -->
+  <h2>① font 속성 (font-family / font-size / font-weight / font-style)</h2>
+  <div class="example-grid">
+
+    <div class="ex">
+      <div class="ex-title">예제 1 — font-family</div>
+      <div class="ex-property">font-family: Georgia, serif;</div>
+      <div class="ex-result">
+        <span class="ex1-result">세리프 계열 폰트 적용</span>
+      </div>
+      <div class="ex-desc">serif 계열(Georgia)로 지정. 브라우저가 지원하지 않을 때 generic-family(serif)가 대체함.</div>
+    </div>
+
+    <div class="ex">
+      <div class="ex-title">예제 2 — font-size</div>
+      <div class="ex-property">font-size: 22px;</div>
+      <div class="ex-result">
+        <span class="ex2-result">큰 글씨</span>
+      </div>
+      <div class="ex-desc">픽셀(px)로 고정 크기 지정. 반응형에는 rem/em 권장. 22px = 기본 16px의 약 1.375배.</div>
+    </div>
+
+    <div class="ex">
+      <div class="ex-title">예제 3 — font-weight & font-style</div>
+      <div class="ex-property">font-weight: 300; font-style: italic;</div>
+      <div class="ex-result">
+        <span class="ex3-result">가늘고 기울어진 텍스트</span>
+      </div>
+      <div class="ex-desc">weight 100~900 사이 지정. italic은 기울임 서체, oblique는 강제 기울임.</div>
+    </div>
+
+    <div class="ex">
+      <div class="ex-title">예제 4 — text-align & line-height</div>
+      <div class="ex-property">text-align: justify; line-height: 2;</div>
+      <div class="ex-result">
+        <span class="ex4-result">양쪽 정렬 예시. 텍스트가 양쪽 끝을 맞춰 고르게 배치되고 줄 간격이 2배로 넓어집니다.</span>
+      </div>
+      <div class="ex-desc">justify는 양쪽 정렬. line-height: 2는 글자 크기의 2배 줄 간격.</div>
+    </div>
+
+  </div>
+
+  <!-- ② text-shadow -->
+  <h2>② text-shadow 속성</h2>
+  <div class="example-grid">
+
+    <div class="ex" style="grid-column: 1 / -1;">
+      <div class="ex-title">예제 5 — text-shadow (다중 그림자)</div>
+      <div class="ex-property">text-shadow: 2px 2px 6px #e74c3c, -1px -1px 3px #f39c12;</div>
+      <div class="ex-result">
+        <span class="ex5-result">텍스트 그림자 효과</span>
+      </div>
+      <div class="ex-desc">
+        형식: <code>x오프셋 y오프셋 흐림반경 색상</code>. 쉼표로 여러 그림자를 겹칠 수 있음.
+        첫 번째(빨강)는 오른쪽 아래, 두 번째(주황)는 왼쪽 위 방향.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ③ letter-spacing / word-spacing -->
+  <h2>③ letter-spacing & word-spacing 속성</h2>
+  <div class="example-grid">
+
+    <div class="ex" style="grid-column: 1 / -1;">
+      <div class="ex-title">예제 6 — letter-spacing & word-spacing</div>
+      <div class="ex-property">letter-spacing: 4px; word-spacing: 12px;</div>
+      <div class="ex-result">
+        <span class="ex6-result">글자 간격 단어 간격</span>
+      </div>
+      <div class="ex-desc">
+        letter-spacing: 글자 사이 간격. word-spacing: 단어 사이 공백 크기.
+        음수값도 가능 (글자를 더 가깝게). 로고·제목 디자인에 자주 활용.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ④ text-decoration -->
+  <h2>④ text-decoration 속성</h2>
+  <div class="example-grid">
+
+    <div class="ex" style="grid-column: 1 / -1;">
+      <div class="ex-title">예제 7 — text-decoration (underline / line-through / overline)</div>
+      <div class="ex-property">text-decoration: underline wavy #e74c3c;</div>
+      <div class="ex-result">
+        <span class="ex7-a">물결 밑줄</span>
+        <span class="ex7-b">취소선</span>
+        <span class="ex7-c">윗줄</span>
+      </div>
+      <div class="ex-desc">
+        line: underline | overline | line-through. style: solid | wavy | dotted | dashed | double.
+        color를 별도 지정 가능. CSS3에서 shorthand로 통합됨.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-num">1 / 2 &nbsp;&nbsp;|&nbsp;&nbsp; HTML/CSS 텍스트 속성 가이드</div>
+</div>
+
+
+<!-- ═══════════════════════════════════ PAGE 2 ═══════════════════════════════════ -->
+<div class="page">
+
+  <div class="page-header">
+    <h1>HTML/CSS 텍스트 & 색상 속성 완전 가이드</h1>
+    <p>text-transform · direction · shadow 종합 · 16진수 색상 10가지</p>
+  </div>
+
+  <!-- ⑤ text-transform -->
+  <h2>⑤ text-transform 속성</h2>
+  <div class="example-grid">
+
+    <div class="ex" style="grid-column: 1 / -1;">
+      <div class="ex-title">예제 8 — text-transform (uppercase / lowercase / capitalize)</div>
+      <div class="ex-property">text-transform: uppercase | lowercase | capitalize;</div>
+      <div class="ex-result" style="padding: 8px;">
+        <span class="ex8-upper">hello world → HELLO WORLD</span><br>
+        <span class="ex8-lower" style="margin-left:0;">HELLO WORLD → hello world</span><br>
+        <span class="ex8-cap" style="margin-left:0;">hello world → Hello World</span>
+      </div>
+      <div class="ex-desc">
+        uppercase: 모두 대문자. lowercase: 모두 소문자. capitalize: 각 단어 첫 글자만 대문자.
+        HTML 원본 텍스트는 변경되지 않으며 CSS 렌더링만 바뀜.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ⑥ direction -->
+  <h2>⑥ direction & unicode-bidi 속성</h2>
+  <div class="example-grid">
+
+    <div class="ex" style="grid-column: 1 / -1;">
+      <div class="ex-title">예제 9 — direction: rtl / ltr</div>
+      <div class="ex-property">direction: rtl; unicode-bidi: bidi-override;</div>
+      <div class="ex-result">
+        <div class="ex9-rtl">RTL: 오른쪽에서 왼쪽으로 (아랍어·히브리어 방식)</div>
+        <div class="ex9-ltr">LTR: 왼쪽에서 오른쪽으로 (기본값 — 한국어·영어)</div>
+      </div>
+      <div class="ex-desc">
+        direction: ltr(기본) | rtl. unicode-bidi: bidi-override로 텍스트 방향 강제 지정.
+        다국어 웹사이트에서 필수 속성.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ⑦ 종합 shadow 예제 -->
+  <h2>⑦ text-shadow + box-shadow 종합 예제</h2>
+  <div class="example-grid">
+
+    <div class="ex" style="grid-column: 1 / -1;">
+      <div class="ex-title">예제 10 — 네온 글로우 효과 (text-shadow + box-shadow + 16진수 색상)</div>
+      <div class="ex-property">text-shadow: 0 0 8px #00d4ff; box-shadow: 0 4px 15px rgba(0,212,255,0.4);</div>
+      <div class="ex-result">
+        <div class="ex10-result">✦ 네온 글로우 텍스트 효과 ✦</div>
+      </div>
+      <div class="ex-desc">
+        text-shadow의 x·y를 0으로 하고 blur만 주면 발광 효과. box-shadow는 컨테이너에 후광 추가.
+        #00d4ff = 밝은 청록색 (R:0, G:212, B:255).
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ⑧ 16진수 색상 10가지 -->
+  <h2>⑧ 16진수(HEX) 색상 10가지 예시</h2>
+  <table class="color-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>HEX 코드</th>
+        <th>미리보기</th>
+        <th>색상 이름</th>
+        <th>R / G / B 분해</th>
+        <th>주요 활용</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><code>#FF0000</code></td>
+        <td><span class="color-swatch" style="background:#FF0000;"></span></td>
+        <td>순수 빨강 (Red)</td>
+        <td>R:255 G:0 B:0</td>
+        <td>경고, 오류, 강조</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><code>#00FF00</code></td>
+        <td><span class="color-swatch" style="background:#00FF00;"></span></td>
+        <td>순수 초록 (Lime)</td>
+        <td>R:0 G:255 B:0</td>
+        <td>성공, 완료 상태</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><code>#0000FF</code></td>
+        <td><span class="color-swatch" style="background:#0000FF;"></span></td>
+        <td>순수 파랑 (Blue)</td>
+        <td>R:0 G:0 B:255</td>
+        <td>링크, 신뢰, 정보</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><code>#FFFF00</code></td>
+        <td><span class="color-swatch" style="background:#FFFF00;"></span></td>
+        <td>노랑 (Yellow)</td>
+        <td>R:255 G:255 B:0</td>
+        <td>하이라이트, 주의</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><code>#FF6B35</code></td>
+        <td><span class="color-swatch" style="background:#FF6B35;"></span></td>
+        <td>주황 (Orange)</td>
+        <td>R:255 G:107 B:53</td>
+        <td>CTA 버튼, 에너지</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><code>#2C3E50</code></td>
+        <td><span class="color-swatch" style="background:#2C3E50;"></span></td>
+        <td>다크 네이비</td>
+        <td>R:44 G:62 B:80</td>
+        <td>헤더, 배경, 본문</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><code>#ECF0F1</code></td>
+        <td><span class="color-swatch" style="background:#ECF0F1;"></span></td>
+        <td>연회색 (Cloud)</td>
+        <td>R:236 G:240 B:241</td>
+        <td>배경, 카드 표면</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><code>#8E44AD</code></td>
+        <td><span class="color-swatch" style="background:#8E44AD;"></span></td>
+        <td>보라 (Purple)</td>
+        <td>R:142 G:68 B:173</td>
+        <td>프리미엄, 창의성</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><code>#1ABC9C</code></td>
+        <td><span class="color-swatch" style="background:#1ABC9C;"></span></td>
+        <td>청록 (Turquoise)</td>
+        <td>R:26 G:188 B:156</td>
+        <td>아이콘, 뱃지, 태그</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><code>#F39C12</code></td>
+        <td><span class="color-swatch" style="background:#F39C12;"></span></td>
+        <td>황금 (Gold)</td>
+        <td>R:243 G:156 B:18</td>
+        <td>별점, 경고, 뱃지</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:10px; padding:8px; background:#f0f8ff; border:1px solid #b8d4ea; border-radius:4px; font-size:11px; color:#555;">
+    <strong>16진수 색상 읽는 법:</strong> &nbsp;
+    <code>#RRGGBB</code> — 각 2자리가 R(빨강)·G(초록)·B(파랑)를 16진수(00~FF)로 표현.
+    3자리 단축형 <code>#RGB</code>도 가능 (<code>#F00</code> = <code>#FF0000</code>).
+    대소문자 구분 없음.
+  </div>
+
+  <div class="page-num">2 / 2 &nbsp;&nbsp;|&nbsp;&nbsp; HTML/CSS 텍스트 속성 가이드</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Margin vs Padding</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f5f5f3; color: #222; line-height: 1.6; padding: 2rem; }
+  h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: .25rem; }
+  p.sub { font-size: .85rem; color: #666; margin-bottom: 2rem; }
+  h2 { font-size: .95rem; font-weight: 600; margin-bottom: .75rem; }
+
+  /* grid layout */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+  /* card */
+  .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 1.25rem; }
+
+  /* demo containers */
+  .scene { background: #e8e8e8; border-radius: 6px; padding: 1rem; min-height: 160px; display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+
+  /* margin demo boxes */
+  .m-box {
+    background: #dbeafe;
+    border: 2px solid #3b82f6;
+    border-radius: 5px;
+    padding: 8px 14px;
+    font-size: .82rem;
+    color: #1e3a8a;
+    font-weight: 500;
+  }
+  .m-box.gap { margin-top: 24px; }
+
+  /* margin overlay label */
+  .m-label { font-size: 10px; color: #3b82f6; font-weight: 600; letter-spacing: .05em; margin-top: 4px; padding-left: 2px; }
+
+  /* padding demo */
+  .p-outer {
+    background: #fef9c3;
+    border: 2px dashed #ca8a04;
+    border-radius: 5px;
+    padding: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .p-inner {
+    background: #fde68a;
+    border: 2px solid #ca8a04;
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-size: .82rem;
+    color: #78350f;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .p-label { font-size: 10px; color: #ca8a04; font-weight: 600; position: absolute; top: 8px; left: 10px; }
+
+  /* shorthand table */
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  th { text-align: left; font-size: .75rem; font-weight: 600; color: #666; padding: 4px 8px; border-bottom: 1px solid #ddd; }
+  td { padding: 5px 8px; border-bottom: 1px solid #f0f0f0; font-family: 'Courier New', monospace; color: #333; }
+  td:first-child { color: #555; font-family: system-ui, sans-serif; }
+  tr:last-child td { border-bottom: none; }
+
+  /* compare table */
+  .cmp td, .cmp th { font-family: system-ui, sans-serif; }
+  .cmp td:nth-child(2) { color: #1d4ed8; }
+  .cmp td:nth-child(3) { color: #92400e; }
+
+  /* tip */
+  .tip { background: #f0fdf4; border-left: 3px solid #22c55e; border-radius: 0 6px 6px 0; padding: .6rem .9rem; font-size: .82rem; color: #14532d; margin-top: .75rem; }
+
+  /* box model visual */
+  .model { display: flex; align-items: center; justify-content: center; background: #e8e8e8; border-radius: 6px; padding: 1rem; }
+  .bm-margin  { background: #fca5a5; border-radius: 5px; padding: 16px; display: flex; align-items: center; justify-content: center; }
+  .bm-border  { background: #fdba74; border: 3px solid #ea580c; border-radius: 4px; padding: 12px; display: flex; align-items: center; justify-content: center; }
+  .bm-padding { background: #fde68a; border-radius: 3px; padding: 12px; display: flex; align-items: center; justify-content: center; }
+  .bm-content { background: #dbeafe; border: 2px solid #3b82f6; border-radius: 3px; padding: 8px 14px; font-size: .78rem; font-weight: 700; color: #1e3a8a; }
+  .bm-lbl { font-size: 9px; font-weight: 700; letter-spacing: .06em; text-align: center; margin-top: 3px; }
+  .bm-wrap { text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>Margin vs Padding</h1>
+<p class="sub">요소의 바깥 여백(margin)과 안쪽 여백(padding)의 차이</p>
+
+<div class="grid">
+
+  <!-- Margin -->
+  <div class="card">
+    <h2>📦 Margin — 요소 바깥 여백</h2>
+    <div class="scene">
+      <div class="m-box">Box A</div>
+      <div class="m-label">↕ margin-top: 24px (바깥 간격)</div>
+      <div class="m-box gap">Box B</div>
+    </div>
+    <div class="tip">
+      <strong>Margin</strong>은 요소와 요소 사이의 거리입니다.<br>
+      배경색은 적용되지 않으며 투명합니다.
+    </div>
+  </div>
+
+  <!-- Padding -->
+  <div class="card">
+    <h2>🗂 Padding — 요소 안쪽 여백</h2>
+    <div class="scene" style="align-items:center; justify-content:center;">
+      <div class="p-outer">
+        <span class="p-label">↔ padding: 28px</span>
+        <div class="p-inner">콘텐츠</div>
+      </div>
+    </div>
+    <div class="tip" style="background:#fffbeb; border-left-color:#f59e0b; color:#78350f;">
+      <strong>Padding</strong>은 테두리와 콘텐츠 사이 공간입니다.<br>
+      배경색이 padding 영역까지 채워집니다.
+    </div>
+  </div>
+
+</div>
+
+<div class="grid">
+
+  <!-- Shorthand -->
+  <div class="card">
+    <h2>⚡ 단축 속성 (shorthand)</h2>
+    <table>
+      <thead><tr><th>값 개수</th><th>코드</th><th>의미</th></tr></thead>
+      <tbody>
+        <tr><td>1개</td><td>margin: 10px</td><td>상하좌우 전체</td></tr>
+        <tr><td>2개</td><td>margin: 10px 20px</td><td>상하 / 좌우</td></tr>
+        <tr><td>3개</td><td>margin: 10px 20px 5px</td><td>상 / 좌우 / 하</td></tr>
+        <tr><td>4개</td><td>margin: 10px 20px 5px 0</td><td>상 / 우 / 하 / 좌</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.78rem; color:#888; margin-top:.5rem;">padding 단축 속성도 동일한 규칙 적용</p>
+  </div>
+
+  <!-- 비교표 -->
+  <div class="card">
+    <h2>🔍 차이점 비교</h2>
+    <table class="cmp">
+      <thead><tr><th>항목</th><th>Margin</th><th>Padding</th></tr></thead>
+      <tbody>
+        <tr><td>위치</td><td>요소 바깥</td><td>요소 안쪽</td></tr>
+        <tr><td>배경색</td><td>투명 (적용 안 됨)</td><td>배경색 채워짐</td></tr>
+        <tr><td>클릭 영역</td><td>포함 안 됨</td><td>포함됨</td></tr>
+        <tr><td>auto 사용</td><td>가능 (가운데 정렬)</td><td>불가</td></tr>
+        <tr><td>음수 값</td><td>가능</td><td>불가</td></tr>
+        <tr><td>겹침(collapse)</td><td>상하 겹침 발생</td><td>발생 안 함</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Box Model -->
+<div class="card">
+  <h2>🎯 CSS Box Model — 전체 구조</h2>
+  <div class="model" style="margin-top:.75rem;">
+    <div class="bm-wrap">
+      <div class="bm-margin">
+        <div class="bm-wrap">
+          <div class="bm-border">
+            <div class="bm-wrap">
+              <div class="bm-padding">
+                <div class="bm-content">Content</div>
+              </div>
+              <div class="bm-lbl" style="color:#92400e;">Padding (노란색)</div>
+            </div>
+          </div>
+          <div class="bm-lbl" style="color:#ea580c;">Border (주황 테두리)</div>
+        </div>
+      </div>
+      <div class="bm-lbl" style="color:#dc2626;">Margin (빨간색)</div>
+    </div>
+  </div>
+  <div class="tip" style="margin-top:.75rem;">
+    Content → Padding → Border → Margin 순서로 바깥으로 확장됩니다.
+    <code style="font-size:.8rem; background:#e8fce8; padding:1px 5px; border-radius:3px;">box-sizing: border-box</code> 를 쓰면 padding과 border가 width 안에 포함됩니다.
+  </div>
+</div>
+
+</body>
+</html>

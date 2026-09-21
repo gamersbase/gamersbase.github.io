@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Block vs Inline — HTML Display 요소</title>
+<style>
+  :root {
+    --blue-50: #E6F1FB; --blue-200: #85B7EB; --blue-600: #185FA5; --blue-800: #0C447C;
+    --green-50: #EAF3DE; --green-200: #97C459; --green-600: #3B6D11; --green-800: #27500A;
+    --amber-50: #FAEEDA; --amber-200: #EF9F27; --amber-600: #854F0B; --amber-800: #633806;
+    --gray-50: #F1EFE8; --gray-100: #D3D1C7; --gray-600: #5F5E5A; --gray-800: #444441;
+    --purple-50: #EEEDFE; --purple-600: #534AB7; --purple-800: #3C3489;
+    --coral-50: #FAECE7; --coral-600: #993C1D; --coral-800: #712B13;
+
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --border: #D3D1C7;
+    --text: #2C2C2A;
+    --text-muted: #5F5E5A;
+    --radius: 8px;
+    --radius-lg: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2.5rem 1.5rem;
+  }
+  header .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--blue-600);
+    margin-bottom: .5rem;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+  }
+  header h1 em {
+    font-style: normal;
+    color: var(--blue-600);
+  }
+  header p {
+    margin-top: .6rem;
+    font-size: .95rem;
+    color: var(--text-muted);
+    max-width: 560px;
+  }
+
+  /* ── Nav tabs ── */
+  nav.tabs {
+    display: flex;
+    gap: 2px;
+    padding: 0 2.5rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.tabs a {
+    display: inline-block;
+    padding: .75rem 1.1rem;
+    font-size: .88rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  nav.tabs a.active, nav.tabs a:hover {
+    color: var(--blue-600);
+    border-bottom-color: var(--blue-600);
+  }
+
+  /* ── Layout ── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  /* ── Section cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .badge-block { background: var(--blue-50); color: var(--blue-800); }
+  .badge-inline { background: var(--green-50); color: var(--green-800); }
+  .card-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .card-header p {
+    font-size: .82rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .card-body {
+    padding: 1.5rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  /* ── Demo areas ── */
+  .demo-area {
+    background: var(--gray-50);
+    border: 1px dashed var(--gray-100);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+  .demo-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--text-muted);
+    margin-bottom: .75rem;
+  }
+
+  /* Block element highlights */
+  .hl-div   { background: #E6F1FB; border: 1.5px solid #85B7EB; border-radius: 5px; padding: 10px 14px; margin: 6px 0; font-size: .9rem; }
+  .hl-p     { background: #EAF3DE; border: 1.5px solid #97C459; border-radius: 5px; padding: 10px 14px; margin: 6px 0; font-size: .9rem; }
+  .hl-h2    { background: #EEEDFE; border: 1.5px solid #AFA9EC; border-radius: 5px; padding: 10px 14px; margin: 6px 0; font-size: 1.1rem; font-weight: 700; }
+  .hl-ul    { background: #FAEEDA; border: 1.5px solid #EF9F27; border-radius: 5px; padding: 10px 14px 10px 30px; margin: 6px 0; font-size: .9rem; }
+  .hl-form  { background: #FAECE7; border: 1.5px solid #F0997B; border-radius: 5px; padding: 10px 14px; margin: 6px 0; font-size: .9rem; }
+  .hl-table { background: #F1EFE8; border: 1.5px solid #B4B2A9; border-radius: 5px; padding: 10px 14px; margin: 6px 0; font-size: .9rem; }
+
+  /* Inline element highlights */
+  .hl-span   { background: #E6F1FB; border: 1.5px solid #85B7EB; border-radius: 3px; padding: 1px 6px; font-size: .88rem; }
+  .hl-a      { background: #EAF3DE; border: 1.5px solid #97C459; border-radius: 3px; padding: 1px 6px; font-size: .88rem; color: var(--green-600); text-decoration: underline; }
+  .hl-strong { background: #EEEDFE; border: 1.5px solid #AFA9EC; border-radius: 3px; padding: 1px 6px; font-size: .88rem; font-weight: 700; }
+  .hl-em2    { background: #FAEEDA; border: 1.5px solid #EF9F27; border-radius: 3px; padding: 1px 6px; font-size: .88rem; font-style: italic; }
+  .hl-code   { background: #FAECE7; border: 1.5px solid #F0997B; border-radius: 3px; padding: 1px 6px; font-family: 'Courier New', monospace; font-size: .82rem; }
+  .hl-img    { background: #F1EFE8; border: 1.5px solid #B4B2A9; border-radius: 3px; padding: 1px 6px; font-size: .88rem; }
+  .hl-label  { background: #FCEBEB; border: 1.5px solid #F09595; border-radius: 3px; padding: 1px 6px; font-size: .88rem; }
+
+  /* Code block */
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: .82rem;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  pre .kw  { color: #cba6f7; }
+  pre .tag { color: #89b4fa; }
+  pre .str { color: #a6e3a1; }
+  pre .cmt { color: #6c7086; font-style: italic; }
+
+  /* ── Comparison table ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .88rem;
+  }
+  .compare-table th {
+    padding: .6rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    background: var(--gray-50);
+    border-bottom: 2px solid var(--border);
+  }
+  .compare-table td {
+    padding: .65rem 1rem;
+    border-bottom: 1px solid var(--gray-50);
+    vertical-align: middle;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: var(--gray-50); }
+  .th-block { color: var(--blue-800); }
+  .th-inline { color: var(--green-800); }
+  .chip {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    vertical-align: middle;
+  }
+  .chip-yes { background: var(--green-50); color: var(--green-600); }
+  .chip-no  { background: var(--coral-50); color: var(--coral-600); }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding: 1rem 1.5rem;
+    background: var(--gray-50);
+    border-top: 1px solid var(--border);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .8rem;
+    color: var(--text-muted);
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── display: 중간 실습 ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .tip {
+    background: var(--blue-50);
+    border-left: 3px solid var(--blue-600);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: .75rem 1rem;
+    font-size: .88rem;
+    color: var(--blue-800);
+  }
+  .tip strong { font-weight: 600; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: .8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">HTML CSS 기초</p>
+  <h1>Block 요소 <em>vs</em> Inline 요소</h1>
+  <p>display 속성이 결정하는 두 가지 렌더링 방식 — 예제와 비교로 완전히 이해하기</p>
+</header>
+
+<nav class="tabs">
+  <a href="#block" class="active">Block 요소</a>
+  <a href="#inline">Inline 요소</a>
+  <a href="#compare">비교표</a>
+  <a href="#code">코드 예제</a>
+</nav>
+
+<main>
+
+  <!-- ── BLOCK ── -->
+  <section class="card" id="block">
+    <div class="card-header">
+      <div>
+        <span class="badge badge-block">Block</span>
+        <h2>Block 요소 — 줄 전체를 차지하는 박스</h2>
+        <p>항상 새 줄에서 시작하고, 부모의 너비 100%를 기본으로 차지합니다.</p>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="tip">
+        <strong>핵심 규칙:</strong> Block 요소는 항상 위아래로 쌓입니다. width, height, margin, padding 모두 자유롭게 지정 가능합니다.
+      </div>
+
+      <!-- 실제 렌더링 데모 -->
+      <div>
+        <p class="demo-label">▸ 실제 렌더링 모습</p>
+        <div class="demo-area">
+          <div class="hl-h2">&lt;h2&gt; 제목 — Block 요소 (보라색)</div>
+          <div class="hl-p">&lt;p&gt; 문단 텍스트입니다. Block 요소는 항상 새 줄에서 시작합니다. (초록색)</div>
+          <div class="hl-div">&lt;div&gt; 범용 컨테이너. 레이아웃 구성에 가장 많이 씁니다. (파란색)</div>
+          <ul class="hl-ul">
+            <li>&lt;ul&gt; / &lt;li&gt; 목록도 Block 요소입니다 (주황색)</li>
+            <li>각 항목이 세로로 쌓입니다</li>
+          </ul>
+          <div class="hl-form">&lt;form&gt; 폼 영역 — 입력 요소를 감싸는 Block 컨테이너 (산호색)</div>
+          <div class="hl-table">&lt;table&gt; 표 — Block처럼 줄을 차지합니다 (회색)</div>
+        </div>
+      </div>
+
+      <!-- 대표 태그 목록 -->
+      <div>
+        <p class="demo-label">▸ 주요 Block 요소 태그</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;div&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;p&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;h1&gt; ~ &lt;h6&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;ul&gt; / &lt;ol&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;li&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;table&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;form&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;header&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;section&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;footer&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;article&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;aside&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;nav&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;blockquote&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;hr&gt;</code>
+          <code style="background:var(--blue-50); color:var(--blue-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;pre&gt;</code>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── INLINE ── -->
+  <section class="card" id="inline">
+    <div class="card-header">
+      <div>
+        <span class="badge badge-inline">Inline</span>
+        <h2>Inline 요소 — 콘텐츠 크기만큼만 차지하는 박스</h2>
+        <p>텍스트 흐름 안에서 나란히 배치됩니다. 새 줄을 만들지 않습니다.</p>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="tip" style="background:var(--green-50); border-left-color:var(--green-600); color:var(--green-800);">
+        <strong>핵심 규칙:</strong> Inline 요소는 텍스트와 함께 흐릅니다. width, height는 지정해도 무시되고, 상하 margin도 제한됩니다.
+      </div>
+
+      <!-- 인라인 렌더링 데모 -->
+      <div>
+        <p class="demo-label">▸ 실제 렌더링 모습 — 같은 줄에 나란히 배치됨</p>
+        <div class="demo-area">
+          <p style="font-size:.95rem; line-height:2.2;">
+            이 문장에는
+            <span class="hl-span">&lt;span&gt; 강조 영역</span>이 있고,
+            <a class="hl-a" href="#">&lt;a&gt; 링크</a>도 있습니다.
+            그리고 <strong class="hl-strong">&lt;strong&gt; 굵은 텍스트</strong>와
+            <em class="hl-em2">&lt;em&gt; 기울임 텍스트</em>,
+            <code class="hl-code">&lt;code&gt; 코드 스니펫</code>도
+            <span class="hl-img">&lt;img&gt; 이미지자리</span>와 함께
+            <span class="hl-label">&lt;label&gt; 라벨</span>처럼
+            모두 한 줄 안에 나란히 배치됩니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 주요 태그 -->
+      <div>
+        <p class="demo-label">▸ 주요 Inline 요소 태그</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;span&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;a&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;strong&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;em&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;code&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;img&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;label&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;input&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;button&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;abbr&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;br&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;i&gt; / &lt;b&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;sup&gt; / &lt;sub&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;time&gt;</code>
+          <code style="background:var(--green-50); color:var(--green-800); padding:4px 10px; border-radius:4px; font-size:.85rem;">&lt;mark&gt;</code>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 비교표 ── -->
+  <section class="card" id="compare">
+    <div class="card-header">
+      <div>
+        <h2>비교표 — Block vs Inline</h2>
+        <p>어떤 상황에서 어떤 요소를 써야 할지 한눈에</p>
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>특성</th>
+            <th class="th-block">Block 요소</th>
+            <th class="th-inline">Inline 요소</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>줄 바꿈</strong></td>
+            <td>앞뒤로 자동 줄 바꿈 발생</td>
+            <td>줄 바꿈 없이 텍스트 흐름에 합류</td>
+          </tr>
+          <tr>
+            <td><strong>기본 너비</strong></td>
+            <td>부모 너비 100%를 차지</td>
+            <td>콘텐츠 크기만큼만 차지</td>
+          </tr>
+          <tr>
+            <td><strong>width / height</strong></td>
+            <td><span class="chip chip-yes">✓ 지정 가능</span></td>
+            <td><span class="chip chip-no">✗ 무시됨</span></td>
+          </tr>
+          <tr>
+            <td><strong>상하 margin</strong></td>
+            <td><span class="chip chip-yes">✓ 완전 적용</span></td>
+            <td><span class="chip chip-no">✗ 좌우만 적용</span></td>
+          </tr>
+          <tr>
+            <td><strong>padding</strong></td>
+            <td>상하좌우 모두 적용</td>
+            <td>좌우는 적용, 상하는 레이아웃에 영향 없음</td>
+          </tr>
+          <tr>
+            <td><strong>자식 요소</strong></td>
+            <td>Block, Inline 모두 포함 가능</td>
+            <td>원칙적으로 Inline 요소만 포함</td>
+          </tr>
+          <tr>
+            <td><strong>주요 용도</strong></td>
+            <td>레이아웃 구조, 섹션, 컨테이너</td>
+            <td>텍스트 내 강조, 링크, 장식</td>
+          </tr>
+          <tr>
+            <td><strong>CSS로 전환</strong></td>
+            <td><code style="font-size:.82rem;">display: inline</code> 으로 전환 가능</td>
+            <td><code style="font-size:.82rem;">display: block</code> 으로 전환 가능</td>
+          </tr>
+          <tr>
+            <td><strong>inline-block</strong></td>
+            <td colspan="2" style="text-align:center; color:var(--amber-600);">두 방식의 중간 — 줄에 나란히 있으면서 width/height도 지정 가능 (<code style="font-size:.82rem;">display: inline-block</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── 코드 예제 ── -->
+  <section class="card" id="code">
+    <div class="card-header">
+      <div>
+        <h2>코드 예제</h2>
+        <p>실제 HTML과 CSS로 동작 방식 확인하기</p>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="grid-2">
+        <div>
+          <p class="demo-label">▸ Block 예제</p>
+<pre><span class="cmt">&lt;!-- Block 요소는 세로로 쌓임 --&gt;</span>
+<span class="tag">&lt;div</span> <span class="kw">style</span>=<span class="str">"background:#E6F1FB;"</span><span class="tag">&gt;</span>
+  첫 번째 div
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="kw">style</span>=<span class="str">"background:#EAF3DE;"</span><span class="tag">&gt;</span>
+  두 번째 div
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;p&gt;</span>이것도 Block 요소입니다<span class="tag">&lt;/p&gt;</span></pre>
+        </div>
+        <div>
+          <p class="demo-label">▸ Inline 예제</p>
+<pre><span class="cmt">&lt;!-- Inline 요소는 나란히 배치됨 --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+  <span class="tag">&lt;span&gt;</span>첫 번째<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;span&gt;</span>두 번째<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;a</span> <span class="kw">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>링크<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;strong&gt;</span>굵게<span class="tag">&lt;/strong&gt;</span>
+  모두 한 줄에 배치됨
+<span class="tag">&lt;/p&gt;</span></pre>
+        </div>
+      </div>
+
+      <div>
+        <p class="demo-label">▸ display 속성으로 전환하기</p>
+<pre><span class="cmt">/* span(Inline)을 Block처럼 쓰기 */</span>
+<span class="tag">span</span> {
+  <span class="kw">display</span>: <span class="str">block</span>;     <span class="cmt">/* 이제 줄 전체 차지 */</span>
+  <span class="kw">width</span>: <span class="str">200px</span>;
+  <span class="kw">height</span>: <span class="str">50px</span>;
+}
+
+<span class="cmt">/* div(Block)를 Inline처럼 쓰기 */</span>
+<span class="tag">div</span> {
+  <span class="kw">display</span>: <span class="str">inline</span>;    <span class="cmt">/* 이제 텍스트 흐름에 합류 */</span>
+}
+
+<span class="cmt">/* 두 방식의 장점만 취하기 */</span>
+<span class="tag">.button</span> {
+  <span class="kw">display</span>: <span class="str">inline-block</span>; <span class="cmt">/* 나란히 + 크기 지정 */</span>
+  <span class="kw">width</span>: <span class="str">120px</span>;
+  <span class="kw">height</span>: <span class="str">40px</span>;
+}</pre>
+      </div>
+
+      <!-- inline-block 시각 데모 -->
+      <div>
+        <p class="demo-label">▸ inline-block 시각 데모</p>
+        <div class="demo-area">
+          <p style="font-size:.82rem; color:var(--text-muted); margin-bottom:.75rem;">버튼들이 나란히 배치되면서 width/height도 적용됨</p>
+          <div style="display:inline-block; width:110px; height:38px; line-height:38px; text-align:center; background:var(--blue-600); color:#fff; border-radius:6px; font-size:.85rem; font-weight:600; margin:4px;">로그인</div>
+          <div style="display:inline-block; width:110px; height:38px; line-height:38px; text-align:center; background:var(--green-600); color:#fff; border-radius:6px; font-size:.85rem; font-weight:600; margin:4px;">회원가입</div>
+          <div style="display:inline-block; width:110px; height:38px; line-height:38px; text-align:center; background:var(--gray-600); color:#fff; border-radius:6px; font-size:.85rem; font-weight:600; margin:4px;">취소</div>
+          <p style="margin-top:.75rem; font-size:.82rem; color:var(--text-muted);">→ <code style="font-size:.8rem;">display: inline-block</code> 덕분에 같은 줄에 나란히, 크기도 지정됨</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#378ADD;"></span>Block 요소</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#639922;"></span>Inline 요소</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#BA7517;"></span>inline-block</span>
+      <span style="font-size:.8rem; color:var(--text-muted); margin-left:auto;">display 속성으로 언제든 전환 가능</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>HTML Block &amp; Inline Elements Reference &nbsp;·&nbsp; CSS <code>display</code> 속성 완전 이해</p>
+</footer>
+
+</body>
+</html>
