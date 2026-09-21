@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS3 애니메이션 통합 예제 및 설명</title>
+  <style>
+    /* 기본 레이아웃 스타일 */
+    body {
+      font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 8px;
+    }
+
+    /* 상단 이미지 영역 */
+    .top-image {
+      width: 100%;
+      max-height: 450px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 25px;
+      background-color: #1e1e2f;
+    }
+
+    /* 요약 카드 및 설명 영역 */
+    .summary-section {
+      background-color: #eef7fc;
+      border-left: 5px solid #3498db;
+      padding: 15px 20px;
+      border-radius: 4px;
+      margin-bottom: 30px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .summary-card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #e1e8ed;
+    }
+
+    .summary-card h4 {
+      margin-top: 0;
+      color: #2980b9;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+
+    /* 실습 데모 무대 영역 */
+    .demo-stage {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background-color: #fafafa;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    /* [통합] 애니메이션 박스 스타일 */
+    .box {
+      width: 120px;
+      height: 60px;
+      background: cyan;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      text-align: center;
+      
+      /* 호버 트랜지션 (크기 변경 시 부드럽게) */
+      transition: width 0.3s ease, height 0.3s ease;
+      
+      /* 통합 애니메이션 실행 (이름, 시간, timing-function, 무한반복) */
+      animation: moveAndColorChange 5s linear infinite;
+    }
+
+    /* 호버 효과 */
+    .box:hover {
+      width: 180px;
+      height: 80px;
+      background-color: lightgreen;
+      cursor: pointer;
+    }
+
+    /* [통합] 키프레임 정의: 테두리 스타일 + 사각형 궤적 이동 */
+    @keyframes moveAndColorChange {
+      0% {
+        left: 20px;
+        top: 20px;
+        border: 2px dotted red;
+      }
+      25% {
+        left: calc(100% - 200px);
+        top: 20px;
+        border: 5px dashed blue;
+      }
+      50% {
+        left: calc(100% - 200px);
+        top: calc(100% - 100px);
+        border: 15px groove green;
+      }
+      75% {
+        left: 20px;
+        top: calc(100% - 100px);
+        border: 5px inset orange;
+      }
+      100% {
+        left: 20px;
+        top: 20px;
+        border: 2px solid cyan;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- 1. 문서 상단 첨부 이미지 -->
+    <img src="Gemini_Generated_Image_awujvuawujvuawuj.png" alt="CSS3 애니메이션 핵심요약 이미지" class="top-image">
+
+    <!-- 2. 애니메이션 핵심 개념 및 프로그래밍 설명 -->
+    <section class="summary-section">
+      <h2>[핵심요약] CSS3 애니메이션 (Animation)</h2>
+      
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>1. 기본 개념</h4>
+          <ul>
+            <li><strong>애니메이션:</strong> 시간에 따른 위치, 크기, 색상, 회전 등의 변화[cite: 1]</li>
+            <li>JavaScript 없이 CSS만으로 구현 가능[cite: 1]</li>
+            <li><strong>키 프레임 (Key Frame):</strong> 주요 변화 시점 지정 (0%, 25%, 50%...)[cite: 1]</li>
+            <li><strong>트위닝 (Tweening):</strong> 중간 프레임을 브라우저가 자동 생성[cite: 1]</li>
+          </ul>
+        </div>
+
+        <div class="summary-card">
+          <h4>2. 핵심 속성 설명</h4>
+          <ul>
+            <li><code>@keyframes</code>: 애니메이션 프레임 정의[cite: 1]</li>
+            <li><code>animation-name</code>: 실행할 키프레임 이름[cite: 1]</li>
+            <li><code>animation-duration</code>: 1회 실행 시간 (예: 5s)[cite: 1]</li>
+            <li><code>animation-iteration-count</code>: 반복 횟수 (예: infinite)[cite: 1]</li>
+          </ul>
+        </div>
+
+        <div class="summary-card">
+          <h4>3. Transition vs Animation</h4>
+          <ul>
+            <li><strong>Transition:</strong> <code>:hover</code> 등 이벤트에 의한 상태 변화 시에만 실행[cite: 1]</li>
+            <li><strong>Animation:</strong> 이벤트 없이도 자동/연속 실행 가능[cite: 1]</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 통합 애니메이션 실습 예제 -->
+    <section>
+      <h2>통합 실습 데모 (위치 이동 + 테두리/색상 변화)</h2>
+      <p>아래 박스는 사각형 동선으로 이동하며 <strong>테두리 스타일/색상</strong>이 변경됩니다. 박스에 <strong>마우스를 올리면(Hover)</strong> 크기가 확대되는 트랜지션이 작동합니다.</p>
+      
+      <div class="demo-stage">
+        <div class="box">
+          Color & Move
+        </div>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>
